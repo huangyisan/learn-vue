@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <h2>{{message}}</h2>
+</div>
+
+<!--三种状态-->
+<!--1. pending 等待状态,网络请求,定时器没到达时间-->
+<!--2. fulfill 满足状态,当我们主动回调了resolve时, 就处于该状态,并且会回调.then()-->
+<!--3. reject 拒绝状态, 当我们主动回调了reject时, 就处于该状态,并且会回调.catch()-->
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

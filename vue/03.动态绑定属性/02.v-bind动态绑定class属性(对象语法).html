@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+
+    .active {
+      color: #f00;
+    }
+
+    .line {
+      font-style: italic;
+    }
+
+    .title {
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<div id="app">
+
+  <!--这种方式不灵活.,不建议使用-->
+  <h2 :class="active">{{message}}</h2>
+
+  <!--<h2 v-bind:class="{类名1: boolean, 类名2: boolean}">{{message}}</h2>-->
+  <!--通过控制boolen,来决定是否加入某种属性,如果为true则加入,false则不加入-->
+  <!--如果存在手写class,则会将动态生成的class和手写的class进行合并-->
+  <h2 v-bind:class="{active: isActive, line: isLine}" class="title">{{message}}</h2>
+
+  <button v-on:click="click">按钮</button>
+
+  <!--使用方法进行控制class-->
+  <h2 v-bind:class="getClasses()" class="title">{{message}}</h2>
+
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      active: 'title',
+      isActive: true,
+      isLine: true
+    },
+    methods: {
+      click: function () {
+        this.isActive = !this.isActive
+      },
+      getClasses: function () {
+        //改成this.属性
+        return {active: this.isActive, line: this.isLine}
+      }
+
+    }
+  })
+
+</script>
+
+</body>
+</html>

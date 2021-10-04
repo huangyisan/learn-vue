@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <ul>
+    <!--获取对象的key和value-->
+    <li v-for="v,k in info">key为{{k}}, value为{{v}}</li>
+    <!--获取对象的key vaule index-->
+    <li v-for="v,k,i in info">key为{{k}}, value为{{v}} index为{{i}}</li>
+  </ul>
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      info: {
+        name: 'why',
+        age: 18,
+        height: 1.88
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

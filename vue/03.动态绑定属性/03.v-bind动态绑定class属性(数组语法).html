@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active{
+      color: #f00;
+    }
+
+    .line {
+      font-style: italic;
+    }
+    
+  </style>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<div id="app">
+  <!--数组语法,用的很少-->
+  <h2 :class="[args1,args2]">{{message}}</h2>
+  <h2 :class="getClasses()">{{message}}</h2>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      args1: 'active',
+      args2: 'line'
+    },
+    methods: {
+      getClasses: function () {
+        return [this.args1,this.args2]
+      }
+    }
+  })
+
+</script>
+
+</body>
+</html>

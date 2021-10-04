@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <!--写法比较冗长,如果存在多出,则需要写多个如此长的mustache语法-->
+  <h2>{{firstName + lastName}}</h2>
+  <!--将firstName和lastName重新结合获得一个新的变量,则可以减少冗长-->
+  <!--computed得到的属性不需要加()-->
+  <h2>{{fullName}}</h2>
+
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      firstName: "yisan",
+      lastName: "huang"
+    },
+    //使用computed计算属性
+    computed: {
+      fullName: function () {
+        return this.firstName + this.lastName
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<script>
+// 箭头函数用的多的场景,把一个函数作为参数传入到另外一个函数的时候.
+
+//  箭头函数的this如何查找? 向外层作用域,一层层查找this,直到有this的定义,和该定义保持一致
+
+  //以下打印出来的this皆为什么?
+  //第一个this是window, 只要是function(){}这种形式的this,指向window
+  //第二个this指向window, 因为是箭头函数,所以会往外查找,该函数外面层的函数是function(){},这函数指向window,保持一致,所以也是window
+  //第三个this是windown,只要是function(){}这种形式的this,指向window
+  //第四个this指向aaa, 因为是箭头函数,外网层查询,发现还是箭头函数,再外网查询, 则属于aaa(){}作用域里面了,这里面的this指向的是aaa,所以保持一致,this指向aaa
+  const obj = {
+    aaa() {
+      setTimeout(function () {
+        setTimeout(function () {
+          console.log(this)  // window
+        })
+
+        setTimeout(() => {
+          console.log(this) //window
+        })
+      })
+
+
+
+      setTimeout(() => {
+        setTimeout(function () {
+          console.log(this) //window
+        })
+
+        setTimeout(() => {
+          console.log(this) //aaa
+        })
+      })
+    }
+  }
+
+  obj.aaa()
+
+</script>
+
+
+</body>
+</html>

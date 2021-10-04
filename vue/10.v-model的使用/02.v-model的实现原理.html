@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <!--<input type="text" v-model="message">-->
+  <!--等同下面这句方式的实现-->
+  <!--原理是 v-bind半丁一个value的值, v-on指令给当前元素绑定input事件-->
+  <input type="text" :value="message", @input="message = $event.target.value">
+  <!--当我们在输入框输入内容的时候-->
+  <!--因为input中的v-model绑定了message, 所以会实时将输入的内容传递给message,message
+  发生改变-->
+  <!--当message发生改变的时候,会实时将数据插入到Mustache语法中,所以DOM会发生响应式改变-->
+  <!--所以,通过v-model实现了双向绑定-->
+  <h2>{{message}}</h2>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

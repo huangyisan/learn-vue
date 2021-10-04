@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <ul>
+    <!--该遍历没有使用下标值-->
+    <li v-for="i in names">{{i}}</li>
+  </ul>
+  <ul>
+    <!--在遍历的过程中获取下标值  先value,后index-->
+    <li v-for="i,k in names">我的序号是{{k}}, 值是{{i}}</li>
+  </ul>
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      names: ['yisan','kk','xiaozhi']
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

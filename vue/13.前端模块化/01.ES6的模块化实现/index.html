@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--指定type="module", 那么这个aaa.js的就是一个模块,他的所有变量都会被限定在自己模块里面-->
+<!--唯有type="module"的引用js文件才可以使用import export-->
+<!--其他bbb.js文件如果要访问,则需要aaa.js导出-->
+<script src="./aaa.js" type="module"></script>
+<script src="./bbb.js" type="module"></script>
+
+
+
+</body>
+</html>

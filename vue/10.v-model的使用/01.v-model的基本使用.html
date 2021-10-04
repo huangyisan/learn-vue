@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<!--表单控件在实际开发中是非常常见的,特别是对于用户信息的提交,需要大量的表单-->
+<!--Vue中使用v-model指令来实现表单元素和数据的双向绑定-->
+
+<div id="app">
+  <!--v-model后面你跟data内的键,这样就做到了跟data数据的双向绑定-->
+  <!--特点是,当在html中修改值的时候,data的值会被修改,反过来,当data的值被修改, html中的内容也会被修改-->
+  <input type="text" v-model="message">
+  <h2>{{message}}</h2>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

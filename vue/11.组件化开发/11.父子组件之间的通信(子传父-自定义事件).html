@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<!--流程总结-->
+<!--
+1. 子组件要干的事情:
+  1.1. 在点击按钮绑定一个click事件,在methods中对这个事件编写函数,且在该函数中emit一个事件并命名,该名称用来被父组件监听
+2. 父组件要干的事情:
+  2.1. 在父组件中,通过v-on来监听子组件的emit事件名称,然后在methods块编写进行后续处理代码
+
+通过emit来打通子到父的通讯桥梁
+-->
+
+
+
+<!--父组件模板-->
+<div id="app">
+  <!--父组件在这边监听子组件的发射事件名称,v-on可以简写为@,这边itemClick就是子组件的事件名称-->
+  <!--cpnclick是一个待定义的方法,在父组件里面进行定义-->
+  <!--v-on:后面也不要去写驼峰命名-->
+  <cpn v-on:itemclick="cpnClick"></cpn>
+</div>
+
+
+<!--子组件模板-->
+<template id="cpn">
+  <div>
+    <!--绑定子组件的点击,点击后要传递给父组件,告诉他我点了那个-->
+    <button v-for="item in categories" @click="btnClick(item)">
+      {{item.name}}
+    </button>
+  </div>
+</template>
+
+
+
+<script>
+  // 子组件
+  const cpn = {
+    template: '#cpn',
+    data() {
+      return {
+        categories: [
+          {id: 'aa', name:'热门推荐'},
+          {id: 'bb', name:'电脑数码'},
+          {id: 'cc', name:'家用电器'},
+          {id: 'dd', name:'手机通话'},
+        ]
+      }
+    },
+    methods: {
+      btnClick(item) {
+        console.log('我按下了',item);
+      //  将数据传递给父组件, itemclick是发送事件的名称,子组件发射了,那么父组件就要监听这个事件
+      //  将item这个参数一并传过去
+        this.$emit('itemclick', item)
+      }
+    }
+  };
+
+  // 父组件
+  const app = new Vue({
+    el: "#app",
+    data: {
+      info: {
+        name: 'yisan',
+        age: 29,
+        height: 1.88
+      }
+    },
+    components: {
+      cpn: cpn
+    },
+    methods: {
+      //接受传递过来的item
+      cpnClick(item){
+        console.log('我收到你的emit了',item)
+      }
+    }
+  })
+
+
+</script>
+
+
+</body>
+</html>

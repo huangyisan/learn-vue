@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<!--有时候我们需要父组件直接访问子组件,或者子组件直接访问父组件-->
+
+<!--父组件访问子组件,使用$children或者$refs-->
+<!--子组件访问父组件,使用$parent-->
+
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn></cpn>
+  <button @click='btnClick'>父组件的按钮</button>
+
+</div>
+
+<template id="cpn">
+  <div>
+    <span>我是子组件</span>
+  </div>
+</template>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    },
+    methods: {
+      btnClick() {
+        //如果调用了多个子组件,则$children会有多个,需要用数组的方式定位是哪一个,这样如果在组件中间插入一个新的组件,就乱了.真实开发几乎不会用children
+        this.$children[0].showMessage();
+        console.log(this.$children);
+        console.log(this.$children[0].name)
+      }
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        methods: {
+          showMessage() {
+            console.log('showMessage')
+          },
+        },
+        data() {
+          return {
+            name: 'yisan'
+          }
+        }
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

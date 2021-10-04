@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <ul>
+    <!--添加key的属性是和vue的虚拟DOM的Diff算法有关-->
+    <!--https://segmentfault.com/a/1190000016200003-->
+    <!--绑定的key要保证唯一性-->
+    <li v-for="i in letters" :key="i">{{i}}</li>
+  </ul>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      letters: ['a', 'b', 'c', 'd']
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

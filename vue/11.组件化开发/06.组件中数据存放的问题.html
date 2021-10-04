@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<!-- 组件中的数据,不可以写在顶层实例的data中-->
+<!-- 组件中的数据data的类型不是obj,而是函数-->
+<!--组件中的数据data 函数返回中包含数据-->
+
+
+<div id="app">
+  <tmp></tmp>
+</div>
+
+
+
+
+<template id="tmp">
+  <p>{{message}}</p>
+</template>
+
+<script>
+
+  Vue.component('tmp', {
+    template: '#tmp',
+
+    // 组件中的数据需要写在data函数中,且返回数据
+    data() {
+      return {
+        message: '我是标题'
+      }
+    }
+  });
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

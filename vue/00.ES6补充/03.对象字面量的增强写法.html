@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <h2>{{message}}</h2>
+</div>
+
+<script>
+  const obj = {
+    name: "yisan",
+    age: 19,
+    run: function () {
+      console.log("在奔跑")
+    },
+    eat: function () {
+      console.log('再次东西')
+    }
+  };
+
+  // 属性增强写法
+  const name = "yisan";
+  const age = 19;
+  const height = 1.88;
+  //es5的写法
+  const obj = {
+    name: name,
+    age: age,
+    height: height
+  };
+  //  es6的增强写法,将变量的名称作为key,值作为value
+  const obj = {
+    name,
+    age,
+    height
+  };
+
+  //  2. 函数的增强写法
+  //es5的写法
+  const obj = {
+    run: function () {
+
+    },
+    eat: function () {
+
+    }
+  };
+  //es6的写法
+  const obj = {
+    run() {
+
+    },
+    eat() {
+
+    }
+  }
+</script>
+
+
+</body>
+</html>

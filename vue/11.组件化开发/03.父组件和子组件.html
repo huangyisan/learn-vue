@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <cpn2></cpn2>
+</div>
+
+
+<script>
+  // 1. 创建第一个组件
+  const cpnC1 = Vue.extend({
+    template: `
+      <div>
+       <h2>我是cpnC1组件</h2>
+      </div>
+    `
+
+  });
+
+  // 2. 创建第二个组件
+  const cpnC2 = Vue.extend({
+    //<cpn1></cpn1>必须写在父块内(div之类的),不能独立成块,独立成块就会出错(比如放div外面层)
+    template: `
+      <div>
+       <h2>我是cpnC2组件</h2>
+       <cpn1></cpn1>
+      </div>
+
+    `,
+    //在cpnC2中注册cpnC1, 就可以直接在cpnC2的template中使用cpnC1了
+    //此时cpnC2是父组件, cpnC1是子组件
+    components: {
+      cpn1:cpnC1
+    }
+  });
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    },
+    // vue实例里面只需要注册cpnC2即可,因为cpnC1在cpnC2中注册了,这边连带一起会注册
+    components: {
+      cpn2:cpnC2
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

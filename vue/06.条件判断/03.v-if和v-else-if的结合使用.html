@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <!-- v-else v-else-if 元素必须紧跟在带 v-if 或者 v-else-if  的元素之后, 否则无法识别-->
+
+  <p v-if="score<60">不及格</p>
+  <p v-else-if="80>score>=60">及格</p>
+  <p v-else-if="90>score>=80">良好</p>
+  <p v-else>优秀</p>
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      score: 88
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

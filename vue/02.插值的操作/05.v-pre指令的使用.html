@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<div id="app">
+  {{message}}
+
+  <!--只想显示{{message}}原封不动的数据,而不做解析-->
+  <h2 v-pre>{{message}}</h2>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+</body>
+</html>

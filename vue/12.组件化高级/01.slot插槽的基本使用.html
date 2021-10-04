@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<!--当同一个组件用到多次,但每个组件都有不同的形式的时候,就需要插槽了-->
+<!--理念:抽取共性,保留不同-->
+
+<div id="app">
+  <!--直接写入button,会自动替换插槽的位置-->
+  <cpn>
+    <button>按钮</button>
+  </cpn>
+  <cpn><span>哈哈哈</span></cpn>
+  <!--支持多个元素的写入到一个插槽中,一起作为元素放入-->
+  <cpn>
+    <a href="#">百度一下</a>
+    <span>我是第二个span</span>
+  </cpn>
+  <!--默认按钮-->
+  <cpn></cpn>
+
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>我是组件</h2>
+    <p>我也是组件</p>
+    <!--放置一个插槽空间-->
+    <!--可以放置一个默认值,比如下面,如果没有传入,那么默认会存在一个按钮-->
+    <slot>
+      <button>默认按钮</button>
+    </slot>
+  </div>
+</template>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    },
+    components: {
+      cpn: {
+        template: '#cpn'
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

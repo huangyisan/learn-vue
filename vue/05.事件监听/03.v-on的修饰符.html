@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <!--.stop修饰符的使用-->
+  <!--当点击btnClick按钮的时候,会因为冒泡触发divClick-->
+  <div @click="divClick">
+    <!--加上stop修饰符,来阻止冒泡-->
+    <button @click.stop="btnClick">按钮</button>
+  </div>
+
+<!--.prevent修饰符的使用-->
+  <form action="baidu">
+    <!--正常情况,点击提交按钮,就会提交数据并且跳转到另外的页面,如果加了.prevent,则可以阻止该事件的发生.这样就可以自己搜集数据,然后发送给服务器了-->
+    <input type="submit" value="提交" @click.prevent="submitClick">
+  </form>
+
+  <!--监听键盘的键帽-->
+  <!--按键松开后触发事件-->
+  <input type="text" @keyup="keyClick">
+  <!--只监听enter弹起-->
+  <input type="text" @keyup.enter="keyClick" placeholder="只监听enter弹起">
+
+  <!--.once修饰符的作用,只有第一次点击有效果,后面点击没有效果-->
+  <button @click.once="btn2Click">once按钮</button>
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    },
+    methods: {
+      btnClick() {
+        console.log("btn click")
+      },
+      divClick() {
+        console.log("div click")
+      },
+      submitClick() {
+        console.log("submitclick")
+      },
+      keyClick() {
+        console.log('s')
+      },
+      btn2Click() {
+        console.log("1")
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

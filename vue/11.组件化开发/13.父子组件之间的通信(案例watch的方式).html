@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <cpn :number1="num1" :number2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+</div>
+
+<template id="cpn">
+<div>
+  <p>props:{{number1}}</p>
+  <p>data:{{dnumber1}}</p>
+  <!--如下写法有问题,会出现报错,不建议直接修改props中的数据-->
+  <!--<input type="text" v-model="number1"> number1-->
+  <!--正确做法是绑定data里面的数据-->
+  <!--<input type="text" v-model="dnumber1"> number1-->
+
+  <!--使用watch就不需要监听input事件了-->
+  <input type="text" v-model="dnumber1" >
+  <p>props:{{number2}}</p>
+  <p>data:{{dnumber2}}</p>
+  <input type="text" v-model="dnumber2"> number2
+</div>
+</template>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      num1: 1,
+      num2: 2,
+    },
+    methods: {
+      //value emit为传过来的值,默认为string类型,因为子组件限定传值为number类型(父传子),所以这边要处理下
+      num1change(value) {
+        // 转换为number类型
+        this.num1 = parseInt(value)
+      },
+      num2change(value) {
+        this.num2 = parseInt(value)
+      }
+    },
+    components: {
+      cpn: {
+        template:'#cpn',
+        props: {
+          number1: Number,
+          number2: Number,
+
+        },
+        //将需要修改的数据跟data的内容进行绑定
+        data() {
+          return {
+            dnumber1: this.number1,
+            dnumber2: this.number2,
+          }
+        },
+        watch: {
+          //函数名称必须是修改数据的名称,也就是dnumber1
+          //函数会包含两个值,一个是修改之前的oldValue,还有一个是修改后的newValue
+          //当监听到dnumber1有变化后,对dnumber2扩大100呗,并且发送emit事件
+          dnumber1(newValue){
+
+          //  实现,number1修改后让number2增100倍的功能
+          //  同时修改dnumber2的值
+            this.dnumber2 = newValue * 100
+            this.$emit('num1change', newValue)
+          },
+          // 将修改玩的dumber2传出去,让父组件接受
+          dnumber2(newValue){
+
+          //  实现.number2修改后让number1缩小100呗功能
+            this.dnumber1 = newValue / 100
+            this.$emit('num2change', newValue)
+          }
+        }
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

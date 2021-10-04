@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <ul>
+    <li v-for="i in letters">{{i}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      letters: ['a', 'b', 'c', 'd', 'e']
+    },
+    methods: {
+      btnClick() {
+        //  调用letters的push方法, 响应式
+        //   this.letters.push('a')
+
+        //修改第一个元素为bbbbb, 但这个不是响应式.通过索引值直接修改元素不是响应式.
+        //修改元素内容,可以用splice()函数替换来处理,这种是响应式的
+        //还可以使用Vue.set(修改对象,索引值,修改内容)来实现
+        // this.letters[0] = 'bbbbb'
+
+        /**  响应式元素:
+         * pop() 删除元素中最后一个元素
+         * shift() 删除元素中第一个元素
+         * unshift 在最前面添加元素
+         * push() 在最后添加元素
+         * splice() ,删除元素/插入元素/替换元素
+         *    第一个元素为起始位置
+         *    第二个位置:
+         *        删除: 输入删除的位置,删除内容为起始位(start)到该位置,不输入则从起始位到后面全部删除
+         *        this.letters.splice(0,1)
+         *        替换: 输入要替换的位置,替换内容为起始位到替换位置,然后第三位写替换的内容
+         *        插入: 输入0,表示一个都不删除,第三位输入要插入的内容
+         *    第三个位置:
+         *        替换: 输入替换的内容
+         *        this.letters.splice(0,1,'s')
+         *        this.letters.splice(0,2,'s','y')
+         *        插入: 输入插入的内容
+         *        this.letters.splice(0,0,'y')
+         * sort() 内容排序
+         * reverse() 内容翻转
+         *
+         */
+
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

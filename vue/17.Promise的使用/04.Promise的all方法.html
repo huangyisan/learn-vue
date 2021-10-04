@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 如果有若干个方法,且他们的执行不是顺序执行,在这些方法后有另外一个需要使用这些方法执行得到的结果的方法,此时可以用promise的all方法,来等待判断是否所有方法都执行完
+
+  // 传入数组,都是可迭代对象
+
+  Promis.all([
+    new Promise((resolve, reject) => {
+      $ajax({
+        url: 'url1',
+        success: function (data) {
+          resolve(data)
+        }
+      })
+    }),
+    new Promise((resolve, reject) => {
+      $ajax({
+        url: 'url2',
+        success: function (data) {
+          resolve(data)
+        }
+      })
+    }),
+    new Promise((resolve, reject) => {
+      $ajax({
+        url: 'url3',
+        success: function (data) {
+          resolve(data)
+        }
+      })
+    }),
+    //    上面的promise全部执行完后,执行then的内容.
+    //    then里面的results使用数组的方式存储了上面每个方法获取到的结果.
+  ]).then(results => {
+    // 第2个promise函数的执行结果
+    console.log(results[0])
+    // 第2个promise函数的执行结果
+    console.log(results[1])
+    // 第3个promise函数的执行结果
+    console.log(results[2])
+
+  })
+</script>
+
+</body>
+</html>

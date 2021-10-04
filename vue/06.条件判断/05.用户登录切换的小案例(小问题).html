@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <!--当输入内容后,如果点击"切换类型"按钮,发现切换后,输入框的内容还是存留着-->
+  <!--产生问题的原因
+      1. 这是因为Vue在进行DOM渲染的时候,出于性能考虑,会尽可能的复用已经存在的元素,而不是重新创建新的元素-->
+  <!--解决方法
+      1. 给对应的input添加key属性,且保证每个input的key不相同-->
+  <span v-if="isUser">
+    用户账号: <input type="text" placeholder="username" key="username">
+  </span>
+  <span v-else="isMail">
+    用户邮箱: <input type="text" placeholder="email" key="email">
+  </span>
+  <button @click="btnClick">切换类型</button>
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      isUser: true,
+      isMail: false
+    },
+    methods: {
+      btnClick() {
+        this.isUser = !this.isUser;
+        this.isMail = !this.isMail;
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

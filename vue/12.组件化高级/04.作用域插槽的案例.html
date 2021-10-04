@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<!--子组件提供数据,父组件修改样式-->
+<!--通过slot-scope父组件获取子组件的数据,然后构建自己的template,来处理数据样式展现-->
+
+<div id="app">
+  <cpn></cpn>
+  <cpn>
+    <!--在子组件中获取pLanguage-->
+    <!--vue在2.5.x以下版本必须使用template,这里为了兼容使用,高版本可以不加-->
+    <!--写template去拿到传过来的data, slot-scope="slot"来引用插槽对象 -->
+    <template slot-scope="slot">
+      <!--data为插槽中暴露出来的数据-->
+      <span v-for="i in slot.data">{{i}} - </span>
+    </template>
+  </cpn>
+  <cpn>
+    <template slot-scope="slot">
+      <span>{{slot.data.join(' * ')}}</span>
+    </template>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <!--定义一个名称,绑定数据,名称随意,后面父组件会用到-->
+    <slot :data="pLanguage">
+      <ul>
+        <li v-for="i in pLanguage">{{i}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            pLanguage: ['python', 'c', 'c++', 'js']
+          }
+        }
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

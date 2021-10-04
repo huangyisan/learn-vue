@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<!-- 子组件是不能引用父组件或者vue实例的数据的-->
+<!--但是,在开发中,往往一些数据确实需要从上层传递到下层-->
+<!--比如在一个页面中,我们从服务器请求到了很多数据
+    其中一部分数据,并非是我们整个页面的大组件来展示的,
+    而是需要下面的子组件进行展示.
+    这个时候,并不会让子组件再次发送一个网络请求,而是直接让大组件(父组件)将数据传递给小组件(子组件)-->
+
+<!--如何让父子组件进行通信
+    1. 父->子,通过props方式向子组件传递数据
+    2. 子->父,通过事件向父组件发送消息-->
+
+
+<div id="app">
+  <!--子组件绑定props中的value, 让他的值等于要绑定的父组件中的data数据-->
+  <!--这边没有绑定message,所以父类的message不会传入到子组件中,用来测试message的default值是否会展现-->
+  <cpn :cmovies="movies"></cpn>
+  <cpn></cpn>
+
+</div>
+
+
+<template id="cpn">
+  <div>
+    <!--变量使用props的value-->
+    <ul>
+      <li v-for="i in cmovies">{{i}}</li>
+    </ul>
+    <p>{{cmovies}}</p>
+    <!--因为没有父组件的message传入,所以展现了default的值"您好"-->
+    <p>{{cmessage}}</p>
+  </div>
+
+</template>
+
+<script>
+  // <!--父传子通过props-->
+  const cpn = {
+    template: '#cpn',
+    //使用数组的形式来作为props的选项
+    /**
+     * 除了数组的形式,也可以使用对象,当需要对props进行类型验证的时候,就需要写对象写法了
+     * 验证所支持的数据类型
+     * string, number, boolean, array, object, date, function, symbol
+     */
+    // props: ['cmovies', 'cmessage'],
+    props: {
+      //限定cmovies传递过来的是array类型,简写
+      // cmovies: Array,
+
+      //Array类型,在高版本的vue,如果要设定默认值,必须得用函数的方式
+      cmovies: {
+        type: Array,
+        default() {
+          return []
+        }
+      },
+
+      //还可以写成如下类型,限定类型为string,默认值为 您好
+      cmessage: {
+        type: String,
+        default: '您好',
+        // 如果为true,那么子组件在被使用的时候,则必须要传入cmessage变量
+        required: false
+      },
+      //  自定义验证
+      propF: {
+        validator: function (value) {
+          //表示传入的值必须匹配如下三种(success,warning,danger),否则验证不通过
+          return ['success', 'warning', 'danger'].indexOf(value) !== -1
+        }
+      }
+    },
+    data() {
+      return {}
+    },
+  };
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      movies: ['海王', '海贼王', '海尔兄弟']
+    },
+    components: {
+      cpn: cpn
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

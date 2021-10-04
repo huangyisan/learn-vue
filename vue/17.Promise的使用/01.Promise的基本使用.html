@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<script>
+  // 一旦有异步操作的时候,用promise包裹起来,异步回调结果的内容在resolve中调用下,然后传入到then中进行代码处理
+  // 失败,则调用reject,则丢到catch里面进行处理
+
+  // 什么情况下会用到promise? 一般情况下是有异步操作的时候,使用Promise对这个雨布操作进行封装
+  // 在执行传入的回调函数时, 会传入两个参数,其本身又是两个函数
+
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('hello, world')
+      reject('err message')
+    }, 1000)
+
+  }).then((data) => {
+    console.log(data)
+  }).catch((err) => {
+    console.log(err)
+  })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    [v-cloak] {
+      /* 当存在v-cloak的时候 则不显示该元素以及内容*/
+      /*配合v-cloak属性使用*/
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<!--因为html从上而下进行渲染,当网络缓慢的时候,可能还没有把vue的数据内容加载出来,则在页面会出现{{xxx}}的显示-->
+<!--有了v-cloak,则当vue的数据完成后,会将v-cloak属性去除掉,从而展现出正常的数据-->
+
+<div id="app" v-cloak>
+  <h2>{{message}}</h2>
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+</body>
+</html>

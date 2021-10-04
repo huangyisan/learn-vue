@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    /*.next {*/
+      /*disabled: disabled;*/
+    /*}*/
+
+  </style>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <label for="licence">
+    <input type="checkbox" id="licence" v-model="isAgree"> 同意
+  </label>
+  <h2>你选择的是:{{isAgree}}</h2>
+  <!--如果同意,则允许点击下一步,否则不允许点击-->
+  <button :disabled="!isAgree">下一步</button>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      isAgree: false
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

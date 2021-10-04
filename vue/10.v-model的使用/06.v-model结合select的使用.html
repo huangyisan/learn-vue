@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="cc">
+  <!--单选的情况,将v-model写在select标签内-->
+  <select name="abc" v-model="fruit">
+    <option value="苹果" >苹果</option>
+    <option value="香蕉" >香蕉</option>
+    <option value="橘子" >橘子</option>
+    <option value="桃子" >桃子</option>
+  </select>
+  你的选择是: {{fruit}}
+</div>
+
+
+
+<div id="app">
+  <!--多选的情况,将v-model写在select标签内-->
+  <select name="abc" v-model="fruit" multiple>
+    <option value="苹果" >苹果</option>
+    <option value="香蕉" >香蕉</option>
+    <option value="橘子" >橘子</option>
+    <option value="桃子" >桃子</option>
+  </select>
+  你的选择是: {{fruit}}
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      //多选使用数组
+      fruit: [],
+    //  单选使用字符串
+    //   fruit: '香蕉'
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

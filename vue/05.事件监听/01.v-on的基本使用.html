@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <h2>{{counter}}</h2>
+  //语法糖写法, 监听click事件
+  <button @click="addClick">+</button>
+  <button v-on:click="subClick">-</button>
+</div>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      counter: 0
+    },
+    methods: {
+      addClick() {
+        console.log("click")
+        this.counter++
+      },
+      subClick: function () {
+        this.counter--
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

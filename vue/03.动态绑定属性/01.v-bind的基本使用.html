@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<div id="app">
+  <!--mustache语法只能在元素内容中使用,无法在标签属性中使用-->
+  <!--需要使用v-bind来绑定属性-->
+  <!--后面跟上:表示src是需要使用v-bind的,且src后面的内容imgUrl变成了变量(需要加引号)-->
+  <!--语法糖为:(一个冒号)-->
+  <img v-bind:src="imgUrl" alt="">
+  <a :href="netPage">百度一下</a>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      netPage: "https://www.baidu.com",
+      imgUrl:'http://www.liaoduoba.com/wp-content/uploads/2019/09/01-38.jpg'
+    }
+  })
+
+</script>
+
+</body>
+</html>

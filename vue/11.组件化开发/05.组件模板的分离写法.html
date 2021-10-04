@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <cpn></cpn>
+  <tmp></tmp>
+</div>
+
+<!--写法1. 把模板写到html里面的script元素里面,type填写'text/x-template' id需要跟vue里面的template绑定-->
+<script type="text/x-template" id="cpn">
+<div>
+  <p>我是分离出来的scripte写法模板</p>
+</div>
+</script>
+
+<!--写法2. 使用template标签即可-->
+
+<template id="tmp">
+  <p>我是分离出来的template写法模板</p>
+</template>
+
+<script>
+
+  // 注册一个全局组件
+  Vue.component('cpn', {
+    //绑定id为cpn的模板
+    template: '#cpn'
+  });
+
+  Vue.component('tmp', {
+    template: '#tmp'
+  });
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

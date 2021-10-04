@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <!--<h2 :style="{css属性名1:css属性值, css属性名2:css属性值2}">{{message}}</h2>-->
+  <!--下面的font-size可以写成驼峰标识,能识别出来-->
+  <h2 :style="{fontSize: '50px'}">{{message}}</h2> <!--必须加上单引号,作为字符串 -->
+  <h2 :style="{fontSize: finalSize + 'px'}">{{message}}</h2>
+  <!--调用函数的方式-->
+  <h2 :style="setFontSize()">{{message}}</h2>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      finalSize: 50
+    },
+    methods: {
+      setFontSize: function () {
+        return {fontSize: this.finalSize + 'px'}
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

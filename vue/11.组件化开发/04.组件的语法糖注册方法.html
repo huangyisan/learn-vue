@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+
+
+<script>
+  // 语法糖,主要是省去了调用Vue.extend()的步骤,可以直接使用一个对象来替代.
+
+  // 2. 创建组件构造器
+  // const cpn1 = Vue.extend({
+  //   template: `
+  //     <div>
+  //      <h2>我是cpnC2组件</h2>
+  //     </div>
+  //
+  //   `
+  // });
+
+  // 2. 语法糖注册全局组件, 将第二个参数,直接写template的内容
+  Vue.component('cpn1', {
+    template: `
+      <div>
+       <h2>我是cpnC2组件</h2>
+      </div>
+
+    `
+  });
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    },
+    // 语法糖局部组件注册, 将第二个参数,直接写成template
+    components: {
+      cpn2: {
+        template: `
+      <div>
+       <h2>我是cpnC2组件</h2>
+      </div>
+
+    `
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

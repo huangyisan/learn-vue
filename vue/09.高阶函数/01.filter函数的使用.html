@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<script>
+  <!--filter中的回调函数有一个要求,必须返回一个boolen的值-->
+  <!--打印出大于10的数字-->
+
+  let a = [10,20,2,5,11,23];
+  let newList = a.filter(function (n) {
+    return n>10
+  });
+  console.log(newList);
+
+  /**
+   * a = [10, 20, 2, 5, 11, 23]
+   * print(list(filter(lambda x: x>10, a)))
+   */
+
+
+</script>
+
+
+</body>
+</html>

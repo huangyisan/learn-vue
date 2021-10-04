@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<!-- 在真实开发里面用的最多的还是局部组件-->
+
+<div id="app">
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+
+  我是局部组件
+  <!--cpn因为是app的局部组件,所以只能app下使用-->
+  <cpn></cpn>
+</div>
+
+<div id="app1">
+  我是App1
+  <my-cpn></my-cpn>
+
+  我是cpn,但不能给app1使用
+  <cpn></cpn>
+
+</div>
+
+
+<script>
+  // 1. 构造组件
+  const cpnC = Vue.extend({
+    template: `
+      <div>
+        <h2>我是标题</h2>
+        <p>我是内容一</p>
+        <p>我是内容二</p>
+      </div>
+    `
+  });
+
+  // 2. 注册组件(全局注册,意味着可以在多个Vue的实例下面使用, app和app1都可以使用)
+  Vue.component('my-cpn', cpnC);
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    },
+    // 对#app 注册局部组件,只有#app才能使用
+    components: {
+      // cpn为使用组件时的标签名
+      cpn: cpnC
+    }
+  });
+
+
+  const app2 = new Vue({
+    el: "#app1"
+
+  })
+
+</script>
+
+
+</body>
+</html>

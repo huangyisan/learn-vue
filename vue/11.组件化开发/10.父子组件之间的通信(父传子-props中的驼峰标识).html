@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<div id="app">
+  <!--如果是使用了v-bind绑定的对象(或者v-on绑定),则不可以使用驼峰标示,如果使用,则会被转换成- -->
+  <!--下面这个cpn的属性,如果用了cInfo,就会被转换成c-info,导致出现问题  -->
+  <!--如果非要写,那么就写成:c-info='info'  (不建议)-->
+  <cpn :cinfo="info"></cpn>
+</div>
+
+
+<template id="cpn">
+  <!--我测试了,需要全部包裹在一个root element中. 如果存在多个平行的root element则报错-->
+  <!--比如最外层div去掉,就暴露了两个root element,一个是span,一个是p,那么就报错了-->
+  <div>
+    <span>我是渣渣辉</span>
+    <p>{{cinfo}}</p>
+  </div>
+</template>
+
+<script>
+
+  const cpn = {
+    template: '#cpn',
+    props: {
+      cinfo: {
+        type: Object,
+        default() {
+          return {}
+        },
+      },
+
+    }
+  };
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      info: {
+        name: 'yisan',
+        age: 29,
+        height: 1.88
+      }
+    },
+    components: {
+      cpn: cpn
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<div id="app">
+  {{message}}
+  <!--某些情况下,服务端返回给我们的数据是html的代码,这个时候用v-html就能渲染出来对应的结果了-->
+  <!--如果不加v-html,那么前端展示出来的就是原封不动的html代码-->
+  <!--v-html="value"-->
+  <h2 v-html="url">{{url}}</h2>
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      url: "<a href='https://www.baidu.com'>百度一下</a>"
+    }
+  })
+
+</script>
+
+</body>
+</html>

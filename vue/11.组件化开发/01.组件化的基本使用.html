@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+<!--组件化使用过程-->
+<!--1. 创建组件构造器对象-->
+<!--2. 注册组件-->
+<!--3. 使用组件-->
+
+<div id="app">
+  <h2>{{message}}</h2>
+
+  <!--使用组件 因为绑定的是app,所以必须放在app实例里面才行-->
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+</div>
+
+<!-- 虽然是全局组件,但这里是不会显示的,因为他不在绑定的任何对象里面(比如app)-->
+<my-cpn></my-cpn>
+
+
+
+<script>
+  // 1. 创建组件构造器对象 Vue.extend({})
+  const conC = Vue.extend({
+    //ES6中可以是用``, 用``的好处是,可以随便换行,类似python的``` ```
+    template: `
+      <div>
+        <h2>我是标题</h2>
+        <p>我是内容一</p>
+        <p>我是内容二</p>
+      </div>
+    `
+  });
+
+  // 2. 注册组件(全局组件)  Vue.component()
+  // 命名组件名称为my-cpn, 再传入构造器
+  Vue.component('my-cpn', conC);
+
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

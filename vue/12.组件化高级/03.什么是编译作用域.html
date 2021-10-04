@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+<!--父组件模板的所有东西都会在父级作用域内编译,子组件模板的所有东西都会在子级作用域内编译-->
+
+<div id="app">
+  <!--因为这个div属于Vue实例的作用域,所以isShow这个变量是去Vue实例里面找,为true所以能显示-->
+  <cpn v-show="isShow"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>我是子组件</h2>
+    <p>我是内容</p>
+    <!--这里属于template id为cpn的作用域,所以去该cpn的里面找,isShow为false,所以不显示-->
+    <p v-show="isShow">我是测试内容</p>
+  </div>
+
+</template>
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊",
+      isShow: true
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            isShow: false
+          }
+        }
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

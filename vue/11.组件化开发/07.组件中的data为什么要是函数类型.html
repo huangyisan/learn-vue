@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../js/vue.js"></script>
+
+
+<!-- 组件会被很多地方复用, 那么需要保证每个被使用地方数据独立性,如果不使用函数,那么数据的指向是同一个内存地址
+     使用函数后,每次使用组件都会开辟一块新的内存地址,这样复用的对象的数据就能保证各自独立了,妙哇-->
+
+<div id="app">
+</div>
+
+
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "你好啊"
+    }
+  })
+
+</script>
+
+
+</body>
+</html>
