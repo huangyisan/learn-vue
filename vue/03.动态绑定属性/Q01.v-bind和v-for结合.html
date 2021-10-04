@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <script src="../js/vue.js"></script>
+
+
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in movies" :class="{active: index==isactive}">{{item}} <button type="button"
+                    @click="change(index)">Click Me!</button>
+            </li>
+
+
+        </ul>
+    </div>
+
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                movies: ['a', 'b', 'c'],
+                isactive: 0
+            },
+            methods: {
+                change(index) {
+                    this.isactive = index
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
+
+<style>
+    .active {
+        color: red
+    }
+</style>
