@@ -58,7 +58,7 @@ const app = new Vue({
       //     books.splice(i, 1)
       //   }
       // }
-      this.books.splice(index,1)
+      this.books.splice(index, 1)
     }
   },
   //定义过滤器,用来复用小数点两位小数
@@ -72,16 +72,16 @@ const app = new Vue({
     sum() {
       let sum = 0;
       // if (Object.keys(this.books).length) {
-        // let i in/of obj, 这里的i是索引值
-        // for (let item in this.books) {
-        //   sum += this.books[item].price * this.books[item].count;
-        // }
-        // 这里of进行遍历,item得到的是里面的对象
-        for (let item of this.books) {
-          sum += item.price * item.count
-        }
-      return sum
+      // let i in/of obj, 这里的i是索引值
+      // for (let item in this.books) {
+      //   sum += this.books[item].price * this.books[item].count;
+      // }
+      // 这里of进行遍历,item得到的是里面的对象
+      for (let item of this.books) {
+        sum += item.price * item.count
       }
+      return sum
     }
+  }
   // }
 });
