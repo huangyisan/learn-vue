@@ -6,3 +6,5 @@
 
 * 即便在src中存在多种模块化的标准，比如commomJS和ES6模块的混合，也可以同时使用webpack打包。
 
+## webpack安装
+`npm install webpack@3.6.0 -g`
