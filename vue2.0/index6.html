@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app1">
+        <input v-model="message" placeholder="edit me">
+        <p>message is {{ message }}</p>
+    </div>
+
+    <div id="app2">
+        <span>Multiline message is:</span>
+        <p style="white-space: pre-line;">{{ message }}</p>
+        <br>
+        <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    </div>
+
+    <div id="app3">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+    </div>
+
+    <div id="app4">
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                message: "dddd"
+            }
+        });
+    
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                message: "dddd"
+            }
+        });
+
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                checked: false
+            }
+        });
+
+        var app4 = new Vue({
+            el: '#app4',
+            data: {
+                checkedNames: []
+            }
+        });
+    
+    </script>
+    
+</body>
+</html>
