@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body> 
+    <ul id="example-1">
+        <li v-for="item in items" :key="item.index">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="example-2">
+        <li v-for="(item, index) in items" :key="index">
+            {{ item.message }} - {{ index }} - {{ pre }}
+        </li>
+    </ul>
+
+    <ul id="example-3">
+        <li v-for="(value, name, index) in items" :key="index">
+            {{ value }} - {{ name }} - {{ index }}
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        var example = new Vue({
+            el: '#example-1',
+            data: {
+                items: [
+                    {message: "foo"},
+                    {message: "bar"}
+                ]
+            }
+
+        });
+
+        var example2 = new Vue({
+            el: '#example-2',
+            data: {
+                pre: "parent",
+                items: [
+                    {message: "foo"},
+                    {message: "bar"}
+                ]
+            }
+
+        });
+
+        var example3 = new Vue({
+            el: '#example-3',
+            data: {
+                pre: "parent",
+                items: {
+                    name: "a",
+                    name2: "b"
+                }
+            }
+
+        });
+        
+
+    </script>
+    
+</body>
+</html>
