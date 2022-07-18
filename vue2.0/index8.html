@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="blog-posts-events-demo">
+        <div :style="{ fontSize: postFontSize + 'em'}">
+            <blog-post
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:post="post"
+            v-on:enlarge-text="postFontSize += 0.1"
+            >
+            </blog-post>
+        </div>
+    </div>
+
+
+    <div id="blog-posts-events-demo1">
+        <div :style="{ fontSize: postFontSize + 'em'}">
+            <blog-post2
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:post="post"
+            v-on:enlarge-text="onEnlargeText"
+            >
+            </blog-post2>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    Vue.component('blog-post', {
+        props: ['post'],
+        template: `
+                    <div class="blog-post">
+                    <h3>{{ post.title }}</h3>
+                    <button v-on:click="$emit('enlarge-text')">
+                        Enlarge text
+                    </button>
+                    <div v-html="post.content"></div>
+                    </div>
+                `
+    })
+
+    Vue.component('blog-post2', {
+        props: ['post'],
+        template: `
+                    <div class="blog-post">
+                    <h3>{{ post.title }}</h3>
+                    <button v-on:click="$emit('enlarge-text', 0.1)">
+                        Enlarge text
+                    </button>
+                    <div v-html="post.content"></div>
+                    </div>
+                `
+    })
+
+    var vm = new Vue({
+        el: '#blog-posts-events-demo',
+        data: {
+            posts: [
+                    {id:1, title: 'abc'},
+                    {id:2, title: 'abcd'},
+                    {id:3, title: 'abcde'}
+            ],
+            postFontSize: 1
+        
+        },
+        
+    })
+
+    var vm = new Vue({
+        el: '#blog-posts-events-demo1',
+        data: {
+            posts: [
+                    {id:1, title: 'abc'},
+                    {id:2, title: 'abcd'},
+                    {id:3, title: 'abcde'}
+            ],
+            postFontSize: 1
+        },
+        methods: {
+            onEnlargeText: function (enlargeAmount) {
+                this.postFontSize += enlargeAmount
+            }
+        }
+    })
+
+
+    </script>
+</body>
+</html>

@@ -13,6 +13,22 @@
         <button-counter></button-counter>
         <button-counter></button-counter>
     </div>
+
+    <div id="props-demo">
+        <blog-post title="bba"></blog-post>
+    </div>
+
+    <div id="bp">
+        <blog-post-2 v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title">
+
+        </blog-post-2>
+    </div>
+
+
+    <div id="bp2">
+        <blog-post-3 v-for="post in posts" v-bind:key="post.id" v-bind:post="post">
+        </blog-post-3>
+    </div>
     
     <script type="text/javascript">
         Vue.component('button-counter', {
@@ -28,6 +44,49 @@
             el: '#components-demo'
         })
 
+        Vue.component('blog-post', {
+            props: ['title'],
+            template: '<h3>{{ title }}</h3>'
+        })
+
+        var vm2 = new Vue({
+            el: '#props-demo',
+
+        })
+
+        Vue.component('blog-post-2', {
+            props: ['title'],
+            template: '<h3>{{ title }}</h3>'
+        })
+
+        var vm3 = new Vue({
+            el: '#bp',
+            data: {
+                posts: [
+                    {id:1, title: 'abc'},
+                    {id:2, title: 'abcd'},
+                    {id:3, title: 'abcde'}
+            ]
+            }
+              
+            
+        })
+
+        Vue.component('blog-post-3', {
+            props: ['post'],
+            template: '<h3>{{ post.title }}</h3>'
+        })
+
+        var vm4 = new Vue({
+            el: '#bp2',
+            data: {
+                posts: [
+                    {id:1, title: 'abc'},
+                    {id:2, title: 'abcd'},
+                    {id:3, title: 'abcde'}
+            ]
+            }
+        })
     </script>
 </body>
 </html>
