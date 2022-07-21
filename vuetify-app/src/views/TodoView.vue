@@ -1,23 +1,17 @@
 <template>
   <div>
-    <v-list flat three-line>
-      <v-list-item-group v-model="settings" multiple active-class="">
-        <v-list-item>
-          <template v-slot:default="{ active }">
-            <v-list-item-action>
-              <v-checkbox :input-value="active"></v-checkbox>
-            </v-list-item-action>
+    <v-list flat>
+      <v-list-item v-for="task in tasks" :key="task.id">
+        <template v-slot:default="{ active }">
+          <v-list-item-action>
+            <v-checkbox :input-value="active"></v-checkbox>
+          </v-list-item-action>
 
-            <v-list-item-content>
-              <v-list-item-title>Notifications</v-list-item-title>
-              <v-list-item-subtitle
-                >Notify me about updates to apps or games that I
-                downloaded</v-list-item-subtitle
-              >
-            </v-list-item-content>
-          </template>
-        </v-list-item>
-      </v-list-item-group>
+          <v-list-item-content>
+            <v-list-item-title>{{ task.name }}</v-list-item-title>
+          </v-list-item-content>
+        </template>
+      </v-list-item>
     </v-list>
   </div>
 </template>
@@ -27,13 +21,13 @@
 
 export default {
   name: "Home",
-
-  components: {
-    // HelloWorld,
-  },
   data() {
     return {
-      settings: [],
+      tasks: [
+        { id: 1, name: "eat banana" },
+        { id: 2, name: "eat aa" },
+        { id: 3, name: "eat bb" },
+      ],
     };
   },
 };
