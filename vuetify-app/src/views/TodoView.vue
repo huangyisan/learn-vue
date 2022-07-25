@@ -3,9 +3,15 @@
   <div>
     <v-col cols="12" sm="6">
       <v-text-field
+        @click:append="addNewTask"
+        @keyup.enter="addNewTask"
+        v-model="newTaskTitle"
+        solo
+        hide-details
+        clearable
         class="pa-3"
         label="Add Task"
-        append-outer-icon="mdi-plus"
+        append-icon="mdi-plus"
       ></v-text-field>
     </v-col>
     <v-list-item-group multiple active-class="">
@@ -69,6 +75,7 @@ export default {
   name: "Home",
   data() {
     return {
+      newTaskTitle: "",
       settings: [],
       tasks: [
         {
@@ -99,6 +106,16 @@ export default {
     },
     deleteTask(id) {
       this.tasks = this.tasks.filter((task) => task.id !== id);
+    },
+    addNewTask() {
+      let newTask = {
+        id: 4,
+        name: this.newTaskTitle,
+        done: false,
+      };
+      this.tasks.push(newTask);
+      // console.log(this.newTaskTitle);
+      // console.log("ccccc");
     },
   },
 };
