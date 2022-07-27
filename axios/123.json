@@ -1,0 +1,39 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "studentA",
+      "age": "18"
+    },
+    {
+      "id": 2,
+      "name": "studentB",
+      "age": "19"
+    },
+    {
+      "id": 3,
+      "name": "studentC",
+      "age": "20"
+    }
+  ],
+  "teacher": [
+    {
+      "id": 1,
+      "name": "teacherA",
+      "subject": "english"
+    },
+    {
+      "id": 2,
+      "name": "teacherB",
+      "subject": "chinese"
+    },
+    {
+      "id": 3,
+      "name": "teacherC",
+      "subject": "art"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
