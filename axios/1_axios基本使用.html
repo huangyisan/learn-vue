@@ -3,25 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="IE=edge"
-    >
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <script
-        type="text/javascript"
-        src="js/axios.min.js"
-    ></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript"
+            src="js/axios.min.js"></script>
     <title>axios基本使用</title>
 </head>
 
 <body>
     <button id="btn1">所有人信息</button>
+    <br />
+    <br />
+    <button id="btn2">点击获取某人的信息</button>
+    <input id="userId" type="text" placeholder="用户id">
+    <br />
+    <br />
+    <button id="btn3">点击添加某人的信息</button>
+    <input id="userName" type="text" placeholder="用户名称">
+    <input id="userAge" type="text" placeholder="用户年龄">
     <script type="text/javascript">
         const btn1 = document.getElementById('btn1')
+        const btn2 = document.getElementById('btn2')
+        const user_id = document.getElementById('userId')
+        const btn3 = document.getElementById('btn3')
+        const user_name = document.getElementById('userName')
+        const user_age = document.getElementById('userAge')
         // btn1.onclick = () => {
         //     const result = axios({
         //         method: 'GET',
@@ -66,8 +73,36 @@
 
         // 精简版2
         btn1.onclick = async () => {
-            const result = await axios.get("")
+            const result = await axios.get("http://localhost:5000/persons")
+            console.log(result.data)
         }
+
+        // 点击获取个人信息
+        btn2.onclick = async () => {
+            const result = await axios({
+                method: 'GET',
+                url: 'http://localhost:5000/person',
+                params: {
+                    id: user_id.value
+                }
+            })
+            console.log(result.data)
+        }
+
+        // 添加个人信息
+
+        btn3.onclick = async () => {
+            const result = await axios({
+                method: 'post',
+                url: "http://localhost:5000/person",
+                data: {
+                    name: user_name.value,
+                    age: user_age.value
+                }
+            })
+
+        }
+
     </script>
 </body>
 
