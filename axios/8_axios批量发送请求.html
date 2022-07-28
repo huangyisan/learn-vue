@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点我获取所有信息</button>
+
+    <script type="text/javascript">
+        const btn = document.getElementById('btn')
+        btn.onclick = async () => {
+            axios.all([
+                axios.get("http://localhost:5000/test1"),
+                axios.get("http://localhost:5000/test2?delay=2000"), // 即便有延迟,也会将结果排序正确.
+                axios.get("http://localhost:5000/test3"),
+            ])
+                .then(axios.spread((res1, res2, res3) => {
+                    console.log(res1, res2, res3)
+                }))
+        }
+
+    </script>
+
+</body>
+
+</html>
